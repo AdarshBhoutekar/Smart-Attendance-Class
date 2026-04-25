@@ -11,14 +11,28 @@ def home_screen():
     col1, col2 = st.columns(2, gap="large")
     with col1:
         st.header("I'm Student")
-        st.image("https://static.vecteezy.com/system/resources/thumbnails/059/925/181/small_2x/dramatic-rustic-graduate-student-in-cap-and-gown-premium-free-png.png", width=120)
+        st.markdown(
+            """
+            <div style="display:flex; justify-content:center;">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/059/925/181/small_2x/dramatic-rustic-graduate-student-in-cap-and-gown-premium-free-png.png" style="width:120px;" />
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         if st.button('Student Portal', type="primary", icon=':material/chevron_right:', icon_position='right'):
             st.session_state['login_type']='student'
             st.rerun()
     with col2:
         st.header("I'm Teacher")
         # st.image("https://www.vecteezy.com/png/59608779-vibrant-artistic-teacher-explaining-lesson-enthusiastic-gesture-4k", width=120)
-        st.image("https://static.vecteezy.com/system/resources/thumbnails/059/608/779/small_2x/vibrant-artistic-teacher-explaining-lesson-enthusiastic-gesture-4k-free-png.png", width=120)
+        st.markdown(
+            """
+            <div style="display:flex; justify-content:center;">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/059/608/779/small_2x/vibrant-artistic-teacher-explaining-lesson-enthusiastic-gesture-4k-free-png.png" style="width:120px;" />
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
         if st.button('Teacher Portal', type="primary", icon=':material/chevron_right:', icon_position='right'):
             st.session_state['login_type']='teacher'
             st.rerun()

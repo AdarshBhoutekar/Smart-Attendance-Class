@@ -25,6 +25,31 @@ def style_background_dashboard():
             .stApp{
                 background: #E0E3FF !important; /* dashboard */
             }
+            
+            
+            /* Text input + password input box */
+            .stTextInput input {
+                background-color: white !important;
+                color: black !important;
+                border: 1px solid #ddd !important;
+                # border-radius: 12px !important;
+            }
+
+            /* Placeholder text */
+            .stTextInput input::placeholder {
+                color: #777 !important;
+            }
+
+            /* Focus effect */
+            .stTextInput input:focus {
+                border: 2px solid #5865F2 !important;
+                box-shadow: 0 0 0 2px rgba(88,101,242,0.15) !important;
+            }
+
+            /* Password eye icon area */
+            [data-testid="stTextInput"] {
+                background: transparent !important;
+            }
         </style>
         """,
         unsafe_allow_html=True
@@ -37,33 +62,42 @@ def style_base_layout():
         @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
         
         
-            /*Hide top bar of streamlit */
-            #mainMenu , footer, header{
-                visibility: hidden;
-            }
+            # /*Hide top bar of streamlit */
+            # #mainMenu , footer, header{
+            #     visibility: hidden;
+            # }
             
-            .block-container{
-                padding-top: 1.5rem !important;
-            }
+            # .block-container{
+            #     padding-top: 1.5rem !important;
+            # }
             
             h1{
                 font-family: 'Climate Crisis', sans-serif !important;
                 font-size: 3.5rem !important;
                 line-height: 0.9 !important;
                 margin-bottom: 0rem !important;
+                # color: #000 !important;
             }
             h2{
                 font-family: 'Climate Crisis', sans-serif !important;
                 font-size: 2rem !important;
                 line-height: 0.9 !important;
                 margin-bottom: 0rem !important;
+                color: #000 !important;
+                letter-spacing: 2px !important;
             }
+
+            .head h2{
+                color:#5865F2 !important;
+            }
+            
             
             h3, h4, p{
                 font-family: 'Noto Serif', serif !important;
                 # font-optical-sizing: auto !important;
                 # font-weight: 400 !important;
                 # font-style: normal !important;
+                color: #000 !important;
             }
         
             .stButton > button{
@@ -73,6 +107,10 @@ def style_base_layout():
                 padding: 10px 20px !important;
                 border: none !important;
                 transition: transform 0.25s ease-in-out !important;
+            }
+
+            .stButton > button * {
+                color: white !important;
             }
 
             .stButton > button[kind="secondary"] {

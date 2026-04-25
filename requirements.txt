@@ -22,3 +22,6 @@ pillow
 
 # Web App
 streamlit
+
+librosa
+resemblyzer
