@@ -31,7 +31,7 @@ def get_face_embeddings(image_np):
         encodings.append(np.array(face_descriptor))
     return encodings
 
-@st.cache_resource
+@st.cache_resource(ttl=60)
 def get_trained_model():
     X = []
     y = []
@@ -60,7 +60,7 @@ def get_trained_model():
     return {'clf': clf, 'X':X, "y":y}
 
 def train_classifier():
-    st.cache_resource. clear()
+    get_trained_model.clear()
     model_data = get_trained_model()
     return bool(model_data)
 

@@ -11,11 +11,11 @@ def create_subject_dialog(teacher_id):
     if st.button("Create Subject Now", type='primary', width='stretch'):
         if sub_id and sub_name and sub_section:
             try:
-                create_subject(sub_id, sub_name, sub_section)
+                create_subject(sub_id, sub_name, sub_section, teacher_id)
                 st.toast("Subject Created Successfully !")
                 st.rerun()
-            except Exception:
-                st.error(f"Error: {str(Exception)}")
+            except Exception as e:
+                st.error(f"Error: {e}")
         else:
             st.warning("Please fill all the fields.")
             

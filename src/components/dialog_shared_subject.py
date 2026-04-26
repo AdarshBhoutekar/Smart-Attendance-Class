@@ -12,7 +12,7 @@ def share_subject_dialog(subject_name, subject_code):
 
     qr = segno.make(join_url)
 
-    out = io.BytesI0()
+    out = io.BytesIO()
 
     qr.save(out, kind='png', scale=10, border=1)
 
@@ -26,4 +26,4 @@ def share_subject_dialog(subject_name, subject_code):
 
     with col2:
         st.markdown('### Scan to Join')
-        st.image(out.getvalue(), use_column_width=True, caption='QRCODE for class joining')
+        st.image(out.getvalue())

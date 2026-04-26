@@ -86,21 +86,21 @@ def teacher_tab_manage_subjects():
         for sub in subjects:
             stats = [
                 ("👨🏻‍🎓", "Students", sub['total_students']),
-                ("👨🏻‍🎓", "Classes", sub['total_Classes']),
+                ("👨🏻‍🎓", "Classes", sub['total_classes']),
             ]
             
-        def share_btn():
-            if st.button(f"Share Code : {sub['name']}", key=f"share_{sub['subject_code']}", icon = ":material/share:"):
-                share_subject_dialog(sub['name'], sub['subject_code'])
-            st.space()
-            
-        subject_card(
-            name = sub ['name' ],
-            code = sub['subject_code' ],
-            section = sub['section' ],
-            stats=stats,
-            footer_callback=share_btn
-        )
+            def share_btn(sub=sub):
+                if st.button(f"Share Code : {sub['name']}", key=f"share_{sub['subject_code']}", icon = ":material/share:"):
+                    share_subject_dialog(sub['name'], sub['subject_code'])
+                st.space()
+                
+            subject_card(
+                name = sub ['name' ],
+                code = sub['subject_code' ],
+                section = sub['section' ],
+                stats=stats,
+                footer_callback=share_btn
+            )
     else:
         st.info("NO SUBJECTS FOUND. CREATE ONE ABOVE")
     
