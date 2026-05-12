@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python -m py_compile src/**/*.py)",
-      "Bash(python -c \"import src.screens.home_screen; import src.screens.teacher_screen; import src.screens.student_screen; import src.components.dialog_auto_enroll\")"
-    ]
-  }
-}
