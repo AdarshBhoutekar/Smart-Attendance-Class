@@ -4,7 +4,7 @@ from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from src.pipelines.face_pipeline import predict_attendance, get_face_embeddings, train_classifier
 from src.pipelines.voice_pipeline import get_voice_embedding
-from src.database.db import get_all_students, create_student, is_admin_client_configured, get_student_subject, get_student_attendance, unenroll_student_to_subject
+from src.database.db import get_all_students, create_student, get_student_subject, get_student_attendance, unenroll_student_to_subject
 from PIL import Image
 import numpy as np
 import time
@@ -175,10 +175,7 @@ def student_screen():
                                 st.rerun()
                                 
                             else:
-                                if is_admin_client_configured():
-                                    st.error("Couldn't create your profile. Check Supabase insert permissions for the students table.")
-                                else:
-                                    st.error("Couldn't create your profile. Add SUPABASE_SERVICE_ROLE_KEY to .streamlit/secrets.toml, then restart Streamlit.")
+                                st.error("Couldn't create your profile. Check Supabase insert permissions for the students table.")
                         else:
                             st.error("Couldn't capture your facial features for registration")
                                 

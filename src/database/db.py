@@ -1,6 +1,6 @@
 from postgrest.exceptions import APIError
 
-from src.database.config import HAS_SUPABASE_SERVICE_ROLE_KEY, supabase, supabase_admin
+from src.database.config import supabase
 import bcrypt
 
 def hash_pass(pwd):
@@ -8,9 +8,6 @@ def hash_pass(pwd):
 
 def check_pass(pwd, hashed):
     return bcrypt.checkpw(pwd.encode(), hashed.encode())
-
-def is_admin_client_configured():
-    return HAS_SUPABASE_SERVICE_ROLE_KEY
 
 def check_teacher_exists(username):
     # Check for Unique username, returns false when username is already taken
@@ -21,7 +18,7 @@ def check_teacher_exists(username):
 def create_teacher(username, password, name):
     data = { "username" : username, "password": hash_pass (password), "name": name}
     try:
-        response = supabase_admin.table("teachers").insert(data).execute()
+        response = supabase.table("teachers").insert(data).execute()
         return response.data
     except APIError:
         return None
@@ -35,24 +32,24 @@ def teacher_login(username, password):
     return None
 
 def get_all_students():
-    response = supabase_admin.table('students').select("*").execute()
+    response = supabase.table('students').select("*").execute()
     return response.data
 
 def create_student(new_name, face_embedding=None, voice_embedding=None):
     data = {'name': new_name, 'face_embedding' : face_embedding, "voice_embedding": voice_embedding}
     try:
-        response = supabase_admin.table('students').insert(data).execute()
+        response = supabase.table('students').insert(data).execute()
         return response.data
     except APIError:
         return None
 
 def create_subject(subject_code, name, section, teacher_id):
     data = {"subject_code": subject_code, "name": name, "section": section, "teacher_id": teacher_id}
-    response = supabase_admin.table("subjects").insert(data).execute()
+    response = supabase.table("subjects").insert(data).execute()
     return response.data
 
 def get_teacher_subject(teacher_id):
-    response = supabase_admin.table('subjects').select("*, subject_students(count), attendance_logs(timestamp)").eq("teacher_id", teacher_id).execute()
+    response = supabase.table('subjects').select("*, subject_students(count), attendance_logs(timestamp)").eq("teacher_id", teacher_id).execute()
     subjects = response.data
 
     for sub in subjects:
@@ -69,17 +66,21 @@ def get_teacher_subject(teacher_id):
 
 def enroll_student_to_subject(student_id, subject_id):
     data = {'student_id': student_id, "subject_id": subject_id}
-    response= supabase_admin.table('subject_students').insert(data).execute()
+    response= supabase.table('subject_students').insert(data).execute()
     return response.data
 
 def unenroll_student_to_subject(student_id, subject_id):
-    response= supabase_admin.table('subject_students').delete().eq('student_id', student_id).eq('subject_id', subject_id).execute()
+    response= supabase.table('subject_students').delete().eq('student_id', student_id).eq('subject_id', subject_id).execute()
     return response.data
 
 def get_student_subject(student_id):
-    response = supabase_admin.table('subject_students').select('*, subjects(*)').eq('student_id', student_id).execute()
+    response = supabase.table('subject_students').select('*, subjects(*)').eq('student_id', student_id).execute()
     return response. data
 
 def get_student_attendance(student_id):
-    response = supabase_admin.table('attendance_logs').select('*, subjects(*)').eq('student_id', student_id).execute()
+    response = supabase.table('attendance_logs').select('*, subjects(*)').eq('student_id', student_id).execute()
+    return response.data
+
+def create_attendance(logs):
+    response = supabase.table('attendance_logs').insert(logs).execute()
     return response.data
