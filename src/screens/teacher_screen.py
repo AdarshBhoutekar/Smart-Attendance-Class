@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from src.ui.base_layout import style_background_dashboard, style_base_layout
+from src.ui.base_layout import style_background_dashboard, style_base_layout, render_attendance_table
 from src.components.header import header_dashboard
 from src.components.footer import footer_dashboard
 from src.components.subject_card import subject_card
@@ -249,7 +249,7 @@ def teacher_tab_attendance_records():
         [['Time', 'Subject', 'Subject Code', 'Attendance Stats']]
     )
 
-    st.dataframe(display_df, width='stretch', hide_index=True)
+    render_attendance_table(display_df)
 
 
 
