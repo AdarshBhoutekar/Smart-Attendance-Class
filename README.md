@@ -12,7 +12,7 @@ Designed as a modern education product, SnapClass combines a clean Streamlit int
 
 - Repository: [SnapClass GitHub](https://github.com/AdarshBhoutekar/SnapClass)
 - Live Product: [SnapClass Live Demo](https://snapclass-app.streamlit.app/)
-- Product Overview: [Add Overview Link Here](#)
+- Product Overview: [SnapClass Overview](#what-the-product-does)
 
 ---
 

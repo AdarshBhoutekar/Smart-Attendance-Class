@@ -8,12 +8,13 @@ import time
 @st.dialog("Quick Enrollment")
 def auto_enroll_dialog(subject_code):
     student_id = st.session_state.student_data['student_id']
+    subject_code = subject_code.strip()
 
     res = supabase.table('subjects').select('subject_id, name').eq('subject_code', subject_code).execute()
     if not res.data:
         st.error('Subject Code not found!')
         if st.button('Close'):
-            st.query_params. clear()
+            st.query_params.clear()
             st.rerun()
         return
     subject = res.data[0]
@@ -25,7 +26,7 @@ def auto_enroll_dialog(subject_code):
             st.query_params.clear()
             st.rerun()
         return
-    st.markdown(f'Would you like to enroll in **{subject ['name']}**?')
+    st.markdown(f"Would you like to enroll in **{subject['name']}**?")
     
     col1, col2 = st.columns(2)
     
@@ -37,7 +38,7 @@ def auto_enroll_dialog(subject_code):
     with col2:
         if st.button('Yes enroll now!', type='primary', width='stretch'):
             enroll_student_to_subject(student_id, subject['subject_id'])
-            st.success('Joined succesfully!')
+            st.success('Joined successfully!')
             st.query_params.clear()
             time.sleep(2)
             st.rerun()

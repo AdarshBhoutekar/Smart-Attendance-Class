@@ -16,8 +16,8 @@ def get_voice_embedding(audio_bytes):
         wav = preprocess_wav(audio)
         embedding = encoder.embed_utterance(wav)
         return embedding.tolist()
-    except Exception as e:
-        st.error('Voice recognization error.')
+    except Exception:
+        st.error('Voice recognition error.')
         return None
     
 def identify_speaker(new_embedding, candidates_dict, threshold=0.65):

@@ -80,12 +80,12 @@ def teacher_tab_take_attendance():
     st.header('Take AI Attendance')
 
     if 'attendance_images' not in st.session_state:
-        st. session_state.attendance_images = []
+        st.session_state.attendance_images = []
 
     subjects = get_teacher_subject(teacher_id)
 
     if not subjects:
-        st.warning('You havent created any subjects yet! Please create one to begin!')
+        st.warning("You haven't created any subjects yet. Please create one to begin.")
         return
 
     subject_options = {f"{s['name']}-{s['subject_code']}": s['subject_id'] for s in subjects}
@@ -141,6 +141,7 @@ def teacher_tab_take_attendance():
 
                 if not enrolled_students:
                     st.warning('No students enrolled in this course')
+                    return
                 else:
                     results, attendance_to_log = [], []
                     
@@ -154,7 +155,7 @@ def teacher_tab_take_attendance():
                         results.append({
                             "Name" : student['name'],
                             "ID" : student['student_id'],
-                            "Source":", ". join(sources) if is_present else "-",
+                            "Source":", ".join(sources) if is_present else "-",
                             "Status": "✔ Present" if is_present else "✘ Absent"
                         })
                         
@@ -206,7 +207,7 @@ def teacher_tab_manage_subjects():
     
     
 def teacher_tab_attendance_records():
-    st.header("Attention Records")
+    st.header("Attendance Records")
     
     teacher_id = st.session_state.teacher_data['teacher_id']
     
@@ -263,7 +264,7 @@ def login_teacher(username, password):
     if teacher:
         st.session_state.user_role = 'teacher'
         st.session_state.teacher_data = teacher
-        st.session_state.is_loggeg_int = True
+        st.session_state.is_logged_in = True
         return True
     
 def teacher_screen_login():
@@ -309,14 +310,14 @@ def register_teacher(teacher_username, teacher_name, teacher_pass, teacher_pass_
         return False, "All Fields are required !"
     
     if check_teacher_exists(teacher_username):
-        return False,"USer already exist."
+        return False, "User already exists."
     if teacher_pass != teacher_pass_confirm:
         return False, "Password doesn't match."
     try:
         response_data = create_teacher(teacher_username, teacher_pass, teacher_name)
         if not response_data:
             return False, "Couldn't create teacher profile. Check Supabase insert permissions for the teachers table."
-        return True, "Succesfully Created ! Login Now."
+        return True, "Successfully created. Login now."
     except Exception as e:
         # return False, "Unexpected Error !"
         return False, e

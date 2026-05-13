@@ -141,7 +141,7 @@ def student_screen():
             new_name = st.text_input("Enter your name", placeholder='E.g. Sanam Sarwe')
 
             st.subheader('Optional : Voice Enrollment')
-            st.info("Enroll your for voice only attendance")
+            st.info("Enroll your voice for voice-only attendance")
 
             audio_data = None
 
@@ -180,7 +180,7 @@ def student_screen():
                             st.error("Couldn't capture your facial features for registration")
                                 
                 else:
-                    st.warning("Please enter you name.")
+                    st.warning("Please enter your name.")
         
     
     footer_dashboard()

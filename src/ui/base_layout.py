@@ -225,8 +225,8 @@ def render_attendance_table(display_df):
 
     st.markdown(
         f"""
-        <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:18px; overflow:hidden; margin-top:0.75rem;">
-            <table style="width:100%; border-collapse:collapse; color:#111827; font-family:'Noto Serif', serif;">
+        <div class="snapclass-attendance-table-card" style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:18px; overflow:hidden; margin-top:0.75rem;">
+            <table class="snapclass-attendance-table" style="width:100%; border-collapse:collapse; color:#111827; font-family:'Noto Serif', serif;">
                 <thead>
                     <tr style="background:#FFFFFF;">
                         <th style="text-align:left; padding:14px 16px; border-bottom:1px solid #E5E7EB; border-right:1px solid #E5E7EB; font-weight:600;">Time</th>
@@ -241,7 +241,7 @@ def render_attendance_table(display_df):
             </table>
         </div>
         <style>
-            table td {{
+            .snapclass-attendance-table td {{
                 background:#FFFFFF;
                 padding:14px 16px;
                 border-bottom:1px solid #E5E7EB;
@@ -249,12 +249,12 @@ def render_attendance_table(display_df):
                 color:#111827;
             }}
 
-            table tbody tr:last-child td {{
+            .snapclass-attendance-table tbody tr:last-child td {{
                 border-bottom:none;
             }}
 
-            table td:last-child,
-            table th:last-child {{
+            .snapclass-attendance-table td:last-child,
+            .snapclass-attendance-table th:last-child {{
                 border-right:none !important;
             }}
         </style>
